@@ -23,7 +23,7 @@ constexpr auto doesthrow(Language lang, const std::string query, const std::stri
     return expect(nothrow([&lang, &query, &err]{
         try {
             lang.query(query);
-        } catch (E e) {
+        } catch (const E& e) {
             expect(e.what() == err);
         }
     }));
