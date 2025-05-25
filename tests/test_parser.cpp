@@ -25,8 +25,8 @@ int main() {
                 std::map<std::string, bool> debugMessages = {};
                 Logger logger = [&debugMessages](
                     const std::string& message,
-                    LoggerParams params,
-                    const std::string& type
+                    LoggerParams /* params */,
+                    const std::string& /* type */
                 ) {
                     debugMessages[message] = true;
                 };
@@ -41,8 +41,8 @@ int main() {
                 std::map<std::string, bool> debugMessages = {};
                 Logger logger = [&debugMessages](
                     const std::string& message,
-                    LoggerParams params,
-                    const std::string& type
+                    LoggerParams /* params */,
+                    const std::string& /* type */
                 ) {
                     debugMessages[message] = true;
                 };
