@@ -19,7 +19,7 @@ using namespace boost::ut::spec;
 using namespace TreeSitter;
 
 template <class E>
-constexpr auto doesthrow(Language lang, const std::string query, const std::string err) {
+auto doesthrow(Language lang, const std::string query, const std::string err) {
     return expect(nothrow([&lang, &query, &err]{
         try {
             lang.query(query);
