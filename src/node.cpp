@@ -41,12 +41,12 @@ Node& Node::operator=(const Node &node) {
     return *this;
 }
 
-bool Node::operator==(const Node &node) {
-    return ts_node_eq(d->node, d->node);
+bool Node::operator==(const Node &node) const {
+    return ts_node_eq(d->node, node.d->node);
 }
 
-bool Node::operator!=(Node node) {
-    return !ts_node_eq(d->node, d->node);
+bool Node::operator!=(const Node &node) const {
+    return !ts_node_eq(d->node, node.d->node);
 }
 
 Node::~Node() = default;
