@@ -1,0 +1,78 @@
+name: UnitTest
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  noble:
+    name: Ubuntu Noble (24.04)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            cmake \
+            git
+      - run: cmake -B build -DENABLE_TESTS=ON && cmake --build build && ctest -C Debug --test-dir build
+
+  jammy:
+    name: Ubuntu Jammy (22.04)
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            cmake \
+            git
+      - run: cmake -B build -DENABLE_TESTS=ON && cmake --build build && ctest -C Debug --test-dir build
+
+  noble-arm:
+    name: Ubuntu Noble ARM
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            cmake \
+            git
+      - run: cmake -B build -DENABLE_TESTS=ON && cmake --build build && ctest -C Debug --test-dir build
+
+  jammy-arm:
+    name: Ubuntu Jammy ARM
+    runs-on: ubuntu-22.04-arm
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            cmake \
+            git
+      - run: cmake -B build -DENABLE_TESTS=ON && cmake --build build && ctest -C Debug --test-dir build
+
+  sequoia:
+    name: macOS Sequoia (15)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew update && brew install cmake
+      - run: cmake -B build -DENABLE_TESTS=ON && cmake --build build && ctest -C Debug --test-dir build
+
+  sonoma:
+    name: macOS Sonoma (14)
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew update && brew install cmake
+      - run: cmake -B build -DENABLE_TESTS=ON && cmake --build build && ctest -C Debug --test-dir build
+
+  ventura:
+    name: macOS Ventura (13)
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew update && brew install cmake
+      - run: cmake -B build -DENABLE_TESTS=ON && cmake --build build && ctest -C Debug --test-dir build
