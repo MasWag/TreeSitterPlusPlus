@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "tree_sitter/cxx/cursor.h"
 #include "tree_sitter/cxx/lang.h"
 #include "tree_sitter/cxx/node.h"
