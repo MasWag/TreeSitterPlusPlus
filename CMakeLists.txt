@@ -29,16 +29,23 @@ function(CHECKOUT proj tag)
     endif()
 endfunction()
 
-checkout(tree-sitter v0.20.1)
-checkout(tree-sitter-c v0.20.1)
-checkout(tree-sitter-c-sharp v0.19.1)
-checkout(tree-sitter-cpp v0.20.0)
-checkout(tree-sitter-go rust-0.19.1)
-checkout(tree-sitter-java v0.19.1)
-checkout(tree-sitter-javascript rust-0.20.0)
-checkout(tree-sitter-python rust-0.19.1)
-checkout(tree-sitter-rust v0.20.0)
-checkout(tree-sitter-typescript rust-0.20.0)
+checkout(tree-sitter v0.25.4)
+checkout(tree-sitter-c v0.24.1)
+checkout(tree-sitter-c-sharp v0.23.1)
+checkout(tree-sitter-cpp v0.23.4)
+checkout(tree-sitter-go v0.23.4)
+checkout(tree-sitter-java v0.23.5)
+checkout(tree-sitter-javascript v0.23.1)
+checkout(tree-sitter-python v0.23.6)
+checkout(tree-sitter-rust v0.24.0)
+checkout(tree-sitter-typescript v0.23.2)
+
+# Patch the compatibility issue of tree-sitter-typescript
+execute_process(
+  COMMAND sed -i.bak
+          "s:tree_sitter/parser:parser:"
+          "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-typescript/common/scanner.h"
+)
 
 add_library(Tree-Sitter
     src/cursor.cpp
@@ -52,13 +59,13 @@ add_library(Tree-Sitter
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-c-sharp/src/parser.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-c-sharp/src/scanner.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-cpp/src/parser.c"
-    "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-cpp/src/scanner.cc"
+    "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-cpp/src/scanner.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-go/src/parser.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-java/src/parser.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-javascript/src/parser.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-javascript/src/scanner.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-python/src/parser.c"
-    "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-python/src/scanner.cc"
+    "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-python/src/scanner.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-rust/src/parser.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-rust/src/scanner.c"
     "${CMAKE_CURRENT_BINARY_DIR}/tree-sitter-typescript/typescript/src/parser.c"
