@@ -29,8 +29,8 @@ public:
     /** @internal Destructor. */
     ~Node();
 
-    bool operator==(const Node& node);
-    bool operator!=(Node node);
+    bool operator==(const Node& node) const;
+    bool operator!=(const Node& node) const;
 
 #if 0
     //Disabled for portability/safety reasons.

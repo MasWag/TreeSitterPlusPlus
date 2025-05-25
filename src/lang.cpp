@@ -10,7 +10,7 @@
 
 using namespace TreeSitter;
 
-static const std::regex QUERY_WORD_REGEX("([\\w-.]*)");
+static const std::regex QUERY_WORD_REGEX("([\\w\\-\\.]*)");
 
 struct Step {
     std::string type;
@@ -187,7 +187,7 @@ int Language::fieldIdForName(const std::string& fieldName) {
 
 bool Language::hasFieldName(const std::string &fieldName) {
     // TODO: might keep vector<std::string> fieldNames for faster lookup.
-    return fieldIdForName(fieldName) == -1;
+    return fieldIdForName(fieldName) != -1;
 }
 
 Query Language::query(const std::string &source) {
